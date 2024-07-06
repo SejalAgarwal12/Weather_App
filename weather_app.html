@@ -1,0 +1,139 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- bootstrap icon -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <!-- fontawesome icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Stlyle Sheet -->
+    <link rel="stylesheet" href="weather_app.css">
+
+    <title>WEATHER APP</title>
+</head>
+
+<body>
+    <h1 class="container mb-3">WEATHER-APP</h1>
+    <div class="container content pt-3">
+        <div class="search">
+            <input type="text" placeholder="enter city">
+            <button><i class="bi bi-search"></i></button>
+        </div>
+
+        <section>
+            <div class="error mt-3 mb-5">
+            </div>
+        </section>
+
+        <div class="weather">
+            <img src="" class="weather-icon"/>
+            <h4 class="feels"></h4>
+            <div class="cardTemp py-3">
+                <h1 class="temp"></h1>
+                <p class="minTemp"></p>
+                <p class="maxTemp"></p>
+            </div>
+            
+            <h5 class="city mt-2 mb-4"></h5>
+
+            <div class="row">
+                <div class="col-sm-6 mb-2">
+                    <div class="sun p-2">
+                        <p class="sunrise"></p><hr>
+                        <p class="sunset"></p>
+                    </div>
+                </div>
+
+                <div class="col-sm-6 mb-2">
+                    <div class="details p-2">
+                        <p class="humidity"></p><hr>
+                        <p class="wind"></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-2">
+                <div class="col-sm-12 mb-2">
+                    <div class="pressure p-2"><p class="pressure"></p></div>    
+                </div>
+            </div>
+
+            <div class="row mb-2">
+                <div class="col-sm-12 mb-2">
+                    <div class="visibility p-2"><p class="visibility"></p></div>    
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    <script>
+        // https://api.openweathermap.org/data/2.5/weather?units=metric&q=mumbai&appid=59e6653ff3754ab5e8c83b272c592815
+        const API_KEY = "59e6653ff3754ab5e8c83b272c592815" ;
+        const API_URL = "https://api.openweathermap.org/data/2.5/weather?units=metric&q=" ;
+        
+        const searchInp = document.querySelector(".search input");
+        const searchBtn  = document.querySelector(".search button");
+
+        let icon = document.querySelector(".weather-icon") ;
+
+        searchBtn.addEventListener("click", () => {
+            checkWeather(searchInp.value);
+        });
+
+        async function checkWeather(city){
+            const response = await fetch(API_URL + city + `&appid=${API_KEY}`);
+            //if city name is invalid it will giver error 404
+            if(response.status == 404){
+                document.querySelector(".error").innerHTML = "<h4>Invalid City Name</h4>"
+                document.querySelector(".error").style.display = "block";
+                document.querySelector(".weather").style.display = "none";
+            }else{
+            const data = await response.json();
+            console.log(data);
+            document.querySelector(".feels").innerHTML = "Feels Like: " + data.weather[0].main 
+            document.querySelector(".city").innerHTML = "<li class='fa'>&#xf08d;</li> "+`${data.name}, ${data.sys.country}` ;
+            document.querySelector(".temp").innerHTML = Math.round(data.main.temp) + "°c"; 
+            document.querySelector(".minTemp").innerHTML = "<li class='fa'>&#xf2cb;</li> Min Temp: " + (data.main.temp_min) + "°c"; 
+            document.querySelector(".maxTemp").innerHTML = "<li class='fa'>&#xf2c8;</li> Max Temp: " + (data.main.temp_max) + "°c"; 
+            document.querySelector(".humidity").innerHTML = "<li class='fa'>&#xf0c9;</li> <span>Humidity:</span> " + data.main.humidity + "%"; 
+            document.querySelector(".wind").innerHTML = "<li class='fa'>&#xf0c2;</li><span> Wind Speed:</span> " + data.wind.speed + " km/h"; 
+            document.querySelector(".pressure").innerHTML = "<li class='fa'>&#xf1d1;</li><span> Pressure:</span> " + data.main.pressure + " hPa"; 
+            document.querySelector(".visibility").innerHTML = "<li class='fa'>&#xf06e;</li><span> Visibility:</span> " + (data.visibility/100) + " km"; 
+            // calculation for sunrise and sunset
+            let unix1 = data.sys.sunrise;
+            let unix2 = data.sys.sunset;
+            // console.log(unix1)
+            let date1 = new Date(unix1 * 1000);
+            let date2 = new Date(unix2 * 1000);
+            let sunrise = `${date1.getHours()}:${date1.getMinutes()}:${date1.getSeconds()}`+" AM"
+            let sunset = `${date2.getHours()}:${date2.getMinutes()}:${date2.getSeconds()}`+" PM"
+            console.log(sunrise)
+            console.log(sunset);
+
+            document.querySelector(".sunrise").innerHTML = "<li class='fa'>&#xf185;</li> <span>Sunrise:</span> " + sunrise;
+            document.querySelector(".sunset").innerHTML = "<li class='fa'>&#xf0a3;</li> <span>Sunset: </span>" + sunset;
+
+            //images
+            if(data.weather[0].main == "Clouds") {
+                 icon.src = "Images/clouds.png" ;
+            }else if(data.weather[0].main == "Clear") {
+                 icon.src = "Images/clear.png" ;
+            }else if(data.weather[0].main == "Rain") {
+                 icon.src = "Images/rain.png" ;
+            }else if(data.weather[0].main == "Drizzle") {
+                 icon.src = "Images/drizzle.png" ;
+            }else if(data.weather[0].main == "Mist") {
+                 icon.src = "Images/mist.png" ;
+            }
+            }          
+        }
+    </script>
+</body>
+
+</html>

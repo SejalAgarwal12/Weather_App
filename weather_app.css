@@ -1,0 +1,108 @@
+body {
+    background: linear-gradient(to right, #1e1c3f, #0a0417, #1e1c3f);
+    /* font-family:'Times New Roman', Times, serif */
+}
+body h1{
+    text-align:center;
+    margin-top: 8%;
+    color: white;
+    text-shadow: 2px 2px 5px #f0eeee;
+}
+.content {
+    background: linear-gradient(135deg, rgb(6, 6, 35), rgb(30, 30, 65));
+    width: 70%;
+    height: auto;
+    margin: auto;
+    text-align: center;
+    color: white;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+.search {
+    width: 100%
+}
+.search input {
+    background-color: transparent;
+    border: 0;
+    border-bottom: 2px solid white;
+    border-width: 50%;
+    outline: 0;
+    color: white;
+    max-width: 70%;
+    font-size: 25px;
+    font-weight: 700;
+    text-align: center;
+}
+.search button {
+    background-color: transparent;
+    border: 0;
+    outline: 0;
+    border-radius: 90%;
+    cursor: pointer;
+    height: 50px;
+    width: 15%;
+    color: white;
+}
+::placeholder {
+    text-align: center;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+.error h4{
+    font-size: 25px;
+    font-weight: 500;
+    text-transform: capitalize;
+    letter-spacing: 2px;
+}
+.weather-icon{
+    width:170px;
+}
+.cardTemp{
+    background: linear-gradient(0deg, rgba(36, 36, 78, 0.5), rgba(36, 36, 78, 0.2));
+    width:50%;
+    margin:auto;
+    height:auto;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+.temp{
+    font-size: 8vw;
+    font-weight: 500;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.city{
+    font-family:'Times New Roman', Times, serif
+}
+.sun{
+    background:linear-gradient(90deg, #1e1c3f, rgba(30, 28, 63, 0.5));
+    border-radius:10px;
+    box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+}
+.sun span{
+    font-weight: 800;
+    font-size: 20px;
+}
+.details {
+    background:linear-gradient(90deg, #1e1c3f, rgba(30, 28, 63, 0.5));
+    border-radius:10px;
+    box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+}
+.details span{
+    font-weight: 800;
+    font-size: 20px;
+}
+.pressure {
+    background:linear-gradient(to right, #1e1c3f, rgba(30, 28, 63, 0.2), #1e1c3f);
+    border-radius:10px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.pressure span{
+    font-weight: 800;
+    font-size: 20px;
+}
+.visibility {
+    background:linear-gradient(to right, #1e1c3f, rgba(30, 28, 63, 0.2), #1e1c3f);
+    border-radius:10px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.visibility span{
+    font-weight: 800;
+    font-size: 20px;
+}
